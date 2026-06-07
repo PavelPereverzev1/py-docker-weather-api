@@ -1,19 +1,17 @@
 import os
 import requests
 
-
-def get_weather() -> None:
-
-    API_KEY = os.getenv("API_KEY")
-    if not API_KEY:
-        print("Error: API_KEY is not set!")
-        return
-
-    CITY = "Paris"
-    URL = (
+API_KEY = os.getenv("API_KEY")
+CITY = "Paris"
+URL = (
         f"http://api.weatherapi.com/v1/current.json"
         f"?key={API_KEY}&q={CITY}&aqi=no"
     )
+
+def get_weather() -> None:
+    if not API_KEY:
+        print("Error: API_KEY is not set!")
+        return
 
     try:
         response = requests.get(URL)
